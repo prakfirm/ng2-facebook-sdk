@@ -2,7 +2,7 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>Ng2-facebook-sdk by ihadeed</title>
+    <title>Ng2-facebook-sdk by zyramedia</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
@@ -12,23 +12,66 @@
   <body>
     <section class="page-header">
       <h1 class="project-name">Ng2-facebook-sdk</h1>
-      <h2 class="project-tagline">Facebook SDK for Angular 2</h2>
-      <a href="https://github.com/ihadeed/ng2-facebook-sdk" class="btn">View on GitHub</a>
-      <a href="https://github.com/ihadeed/ng2-facebook-sdk/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/ihadeed/ng2-facebook-sdk/tarball/master" class="btn">Download .tar.gz</a>
+      <h2 class="project-tagline">TypeScript Facebook SDK for Angular 2</h2>
+      <a href="https://github.com/zyramedia/ng2-facebook-sdk" class="btn">View on GitHub</a>
+      <a href="https://github.com/zyramedia/ng2-facebook-sdk/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/zyramedia/ng2-facebook-sdk/tarball/master" class="btn">Download .tar.gz</a>
     </section>
 
     <section class="main-content">
-      <h3>
-<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h3>
+      <p><a href="https://www.npmjs.com/package/ng2-facebook-sdk"><img src="https://img.shields.io/npm/l/express.svg" alt="npm"></a></p>
+
+<p><a href="https://nodei.co/npm/ng2-facebook-sdk/"><img src="https://nodei.co/npm/ng2-facebook-sdk.png?stars&amp;downloads" alt="NPM"></a></p>
+
+<h1>
+<a id="angular2-facebook-sdk" class="anchor" href="#angular2-facebook-sdk" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Angular2 Facebook SDK</h1>
+
+<ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#example-usage">Example Usage</a></li>
+<li>
+<a href="#methods">Methods</a>
+
+<ul>
+<li><a href="#initparams-facebookinitparams-void">init(params: FacebookInitParams): void</a></li>
+<li>api(path: string, method?: FacebookApiMethod, params?: any = {}): Promise</li>
+<li>ui(params: FacebookUiParams): Promise</li>
+<li>getLoginStatus(): Promise</li>
+<li>login(options? FacebookLoginOptions): Promise</li>
+<li>logout(): Promise</li>
+<li>getAuthResponse(): FacebookAuthResponse</li>
+</ul>
+</li>
+<li>
+<a href="#interfaces">Interfaces</a>
+
+<ul>
+<li><a href="#facebookinitparams">FacebookInitParams</a></li>
+<li><a href="#facebookapimethod-enum">FacebookApiMethod (enum)</a></li>
+<li><a href="#facebookuiparams">FacebookUiParams</a></li>
+<li><a href="#facebookauthresponse">FacebookAuthResponse</a></li>
+<li><a href="#facebookloginstatus">FacebookLoginStatus</a></li>
+<li><a href="#facebookloginoptions">FacebookLoginOptions</a></li>
+<li><a href="#facebookloginresponse">FacebookLoginResponse</a></li>
+</ul>
+</li>
+</ul>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
 
 <p>Install via NPM:</p>
 
 <pre><code>npm i --save-dev ng2-facebook-sdk
 </code></pre>
 
-<h3>
-<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h3>
+<p>Install via Bower:</p>
+
+<pre><code>bower install ng2-facebook-sdk
+</code></pre>
+
+<h2>
+<a id="example-usage" class="anchor" href="#example-usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example Usage</h2>
 
 <div class="highlight highlight-source-ts"><pre><span class="pl-k">import</span> {FacebookService, FacebookLoginResponse} <span class="pl-k">from</span> <span class="pl-s">'ng2-facebook-sdk/dist'</span>;
 
@@ -47,8 +90,244 @@
   }
 }</pre></div>
 
+<h2>
+<a id="methods" class="anchor" href="#methods" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Methods</h2>
+
+<h4>
+<a id="initparams-facebookinitparams-void" class="anchor" href="#initparams-facebookinitparams-void" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>init(params: FacebookInitParams): void</h4>
+
+<p>This method is used to initialize and setup the SDK.</p>
+
+<div class="highlight highlight-source-ts"><pre><span class="pl-k">import</span> {FacebookService, FacebookInitParams} <span class="pl-k">from</span> <span class="pl-s">'ng2-facebook-sdk/dist'</span>;
+
+@Component(...)
+<span class="pl-k">export</span> <span class="pl-k">class</span> <span class="pl-en">MyComponent</span> {
+  <span class="pl-en">constructor</span>(<span class="pl-k">private</span> <span class="pl-v">fb</span>: FacebookService) {
+    <span class="pl-k">let</span> <span class="pl-v">fbParams</span>: FacebookInitParams <span class="pl-k">=</span> {
+                                   appId: <span class="pl-s">'1234566778'</span>,
+                                   xfbml: <span class="pl-c1">true</span>,
+                                   version: <span class="pl-s">'v2.6'</span>
+                                   };
+    <span class="pl-c1">this</span>.fb.init(fbParams);
+  }
+}</pre></div>
+
+<div class="highlight highlight-source-ts"><pre><span class="pl-k">import</span> {FacebookService, FacebookInitParams} <span class="pl-k">from</span> <span class="pl-s">'ng2-facebook-sdk/dist'</span>;
+
+@Component(...)
+<span class="pl-k">export</span> <span class="pl-k">class</span> <span class="pl-en">MyComponent</span> {
+
+}</pre></div>
+
+<h2>
+<a id="interfaces" class="anchor" href="#interfaces" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Interfaces</h2>
+
+<h4>
+<a id="facebookinitparams" class="anchor" href="#facebookinitparams" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>FacebookInitParams</h4>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>appId</td>
+<td><code>string</code></td>
+<td>Your application ID. If you don't have one find it in the App dashboard or go there to create a new app. <strong>Defaults to <code>null</code></strong>.</td>
+</tr>
+<tr>
+<td>version</td>
+<td><code>string</code></td>
+<td>Determines which versions of the Graph API and any API dialogs or plugins are invoked when using the <code>.api()</code> and <code>.ui()</code> functions. Valid values are determined by currently available versions, such as 'v2.0'. <strong>This is a required parameter</strong>.</td>
+</tr>
+<tr>
+<td>cookie</td>
+<td><code>boolean</code></td>
+<td>Determines whether a cookie is created for the session or not. If enabled, it can be accessed by server-side code. <strong>Defaults to <code>false</code></strong>.</td>
+</tr>
+<tr>
+<td>status</td>
+<td><code>boolean</code></td>
+<td>Determines whether the current login status of the user is freshly retrieved on every page load. If this is disabled, that status will have to be manually retrieved using <code>.getLoginStatus()</code>. <strong>Defaults to <code>false</code></strong>.</td>
+</tr>
+<tr>
+<td>xfbml</td>
+<td><code>boolean</code></td>
+<td>Determines whether XFBML tags used by social plugins are parsed, and therefore whether the plugins are rendered or not. <strong>Defaults to <code>false</code></strong>.</td>
+</tr>
+<tr>
+<td>frictionlessRequests</td>
+<td><code>boolean</code></td>
+<td>Frictionless Requests are available to games on Facebook.com or on mobile web using the JavaScript SDK. This parameter determines whether they are enabled. <strong>Defaults to <code>false</code></strong>.</td>
+</tr>
+<tr>
+<td>hideFlashCallback</td>
+<td><code>function</code></td>
+<td>This specifies a function that is called whenever it is necessary to hide Adobe Flash objects on a page. This is used when <code>.api()</code> requests are made, as Flash objects will always have a higher <code>z-index</code> than any other DOM element. See our Custom Flash Hide Callback for more details on what to put in this function. <strong>Defaults to <code>null</code></strong>.</td>
+</tr>
+</tbody>
+</table>
+
+<h4>
+<a id="facebookapimethod-enum" class="anchor" href="#facebookapimethod-enum" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>FacebookApiMethod (enum)</h4>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>get</td>
+<td>Get request</td>
+</tr>
+<tr>
+<td>post</td>
+<td>Post request</td>
+</tr>
+<tr>
+<td>delete</td>
+<td>Delete request</td>
+</tr>
+</tbody>
+</table>
+
+<h4>
+<a id="facebookuiparams" class="anchor" href="#facebookuiparams" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>FacebookUiParams</h4>
+
+<h4>
+<a id="facebookauthresponse" class="anchor" href="#facebookauthresponse" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>FacebookAuthResponse</h4>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>accessToken</td>
+<td><code>string</code></td>
+<td>User access token</td>
+</tr>
+<tr>
+<td>expiresIn</td>
+<td><code>number</code></td>
+<td>Access token lifetime in seconds</td>
+</tr>
+<tr>
+<td>signedRequest</td>
+<td><code>string</code></td>
+<td></td>
+</tr>
+<tr>
+<td>userID</td>
+<td><code>string</code></td>
+<td>The Facebook user ID</td>
+</tr>
+</tbody>
+</table>
+
+<h4>
+<a id="facebookloginstatus" class="anchor" href="#facebookloginstatus" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>FacebookLoginStatus</h4>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>status</td>
+<td><code>string</code></td>
+<td>Status</td>
+</tr>
+<tr>
+<td>authResponse</td>
+<td><code>FacebookAuthResponse</code></td>
+<td>Facebook AuthResponse object</td>
+</tr>
+</tbody>
+</table>
+
+<h4>
+<a id="facebookloginoptions" class="anchor" href="#facebookloginoptions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>FacebookLoginOptions</h4>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>auth_type</td>
+<td><code>string</code></td>
+<td></td>
+</tr>
+<tr>
+<td>scope</td>
+<td><code>string</code></td>
+<td></td>
+</tr>
+<tr>
+<td>return_scopes</td>
+<td><code>boolean</code></td>
+<td></td>
+</tr>
+<tr>
+<td>enable_profile_selector</td>
+<td><code>boolean</code></td>
+<td></td>
+</tr>
+<tr>
+<td>profile_selector_ids</td>
+<td><code>string</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h4>
+<a id="facebookloginresponse" class="anchor" href="#facebookloginresponse" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>FacebookLoginResponse</h4>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>authResponse</td>
+<td><code>FacebookAuthResponse</code></td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td><code>string</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
       <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/ihadeed/ng2-facebook-sdk">Ng2-facebook-sdk</a> is maintained by <a href="https://github.com/ihadeed">ihadeed</a>.</span>
+        <span class="site-footer-owner"><a href="https://github.com/zyramedia/ng2-facebook-sdk">Ng2-facebook-sdk</a> is maintained by <a href="https://github.com/zyramedia">zyramedia</a>.</span>
 
         <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
