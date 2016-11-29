@@ -1,12 +1,7 @@
 {
   "name": "@deals-encash/ng2-facebook-sdk",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Facebook TypeScript SDK for Angular2",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "ngc",
     "test": "echo \"No tests for now :)\" && exit 0"
