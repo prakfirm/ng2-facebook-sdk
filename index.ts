@@ -7,4 +7,4 @@ export {
   FacebookLoginStatus,
   FacebookLoginOptions,
   FacebookLoginResponse
-} from './ng2-facebook-sdk';
+} from './src/ng2-facebook-sdk';

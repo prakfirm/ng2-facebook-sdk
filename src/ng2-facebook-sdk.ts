@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 
-declare var FB: any;
+declare let FB: any;
 
 // TODO create an interface (type) for the response instead of any
 
